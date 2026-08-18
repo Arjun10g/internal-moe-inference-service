@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-08-18T04:42:13Z",
+  "status": "passed_with_environment_limitations",
+  "platform": {
+    "system": "macOS-26.2-arm64-arm-64bit",
+    "python": "3.12.13",
+    "transformers": "5.14.0",
+    "torch": "2.13.0",
+    "docker_client": "29.1.3",
+    "container_runtime_available": false,
+    "cuda_available": false,
+    "llama_cpp_metal_available": true
+  },
+  "checks": {
+    "pytest": {
+      "status": "passed",
+      "tests_passed": 76,
+      "tests_failed": 0,
+      "coverage_percent": 84.03,
+      "minimum_coverage_percent": 75.0,
+      "network_mode": "HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1; real-model test blocks non-loopback socket connections"
+    },
+    "real_model_process_smoke": {
+      "status": "passed",
+      "architecture": "Qwen2MoeForCausalLM",
+      "model_type": "qwen2_moe",
+      "parameter_count": 41568,
+      "vocabulary_size": 64,
+      "seed": 20260817,
+      "model_manifest_sha256": "278ba7600a2497d2b23feb8a49b2ba11eb4c378736b4a7e83e7c5485babd9c23",
+      "artifact_file_count": 6,
+      "artifact_bytes": 176366,
+      "startup_seconds": 3.0199112499831244,
+      "generated_tokens": 4,
+      "requests_checked": 3,
+      "non_streaming_checked": true,
+      "sse_streaming_checked": true,
+      "sse_done_sentinel_checked": true,
+      "model_load_total": 1,
+      "offline_flags_enforced": true
+    },
+    "qwen_gcp_pointer": {
+      "status": "passed",
+      "profile_id": "qwen3-coder-30b-a3b-q4xl",
+      "file_name": "Qwen3-Coder-30B-A3B-Instruct-1M-UD-Q4_K_XL.gguf",
+      "url": "https://storage.googleapis.com/restricted-local-coder-dazzling-howl-491904/Qwen3-Coder-30B-A3B-Instruct-1M-UD-Q4_K_XL.gguf",
+      "http_reachable": true,
+      "content_length": 17690500448,
+      "expected_sha256": "e71c9271166ad64865767022e86f45ea4f03a8258389460cc55c8d95e18833db",
+      "sha256_enforced_after_download": true
+    },
+    "llama_cpp_runtime": {
+      "status": "passed",
+      "tag": "b10355",
+      "commit": "dd1ea524333b1e697489067d7a4c39c60d32beee",
+      "darwin_arm64_archive_sha256": "c9ea9bbe4253b3c3109108072df3bce8b30ded1e56280813645ba4b7d23423d8",
+      "reported_version": "version: 10355 (dd1ea5243)",
+      "archive_size_and_sha256_verified": true,
+      "configured_cli_flags_present": true,
+      "detected_devices": [
+        "Apple M2 via Metal",
+        "Accelerate BLAS"
+      ],
+      "process_integration": {
+        "startup_and_authenticated_health": true,
+        "non_streaming_completion": true,
+        "sse_streaming_completion": true,
+        "graceful_shutdown": true
+      }
+    },
+    "ruff": {
+      "status": "passed"
+    },
+    "mypy": {
+      "status": "passed",
+      "source_files_checked": 38
+    },
+    "bandit": {
+      "status": "passed"
+    },
+    "pip_audit": {
+      "status": "passed",
+      "known_vulnerabilities": 0
+    },
+    "python_packages": {
+      "status": "passed",
+      "artifacts": [
+        "internal_moe_inference_service-0.1.0.tar.gz",
+        "internal_moe_inference_service-0.1.0-py3-none-any.whl"
+      ]
+    },
+    "docker_static_contract": {
+      "status": "passed",
+      "covers": [
+        "non-root runtime user",
+        "read-only filesystem compatibility",
+        "dropped capabilities",
+        "no-new-privileges",
+        "model and artifact exclusion from the Docker build context",
+        "internal-network smoke workflow",
+        "offline runtime environment defaults",
+        "pinned llama.cpp runtime download and verification stage",
+        "Linux llama.cpp OpenMP and TLS runtime libraries"
+      ]
+    },
+    "source_scan": {
+      "status": "passed",
+      "forbidden_patterns": [
+        "static AWS credentials",
+        "trust_remote_code=True",
+        "runtime Hugging Face Hub URL",
+        "placeholder TODO/FIXME implementations"
+      ]
+    }
+  },
+  "limitations": [
+    "The Docker client is installed but no Docker daemon is running, so the container image and Compose smoke test were not executed locally.",
+    "No CUDA GPU is available; CUDA execution and capacity measurements were not run. The pinned native runtime did detect the host Apple M2 Metal device.",
+    "The target 30B-A3B GGUF was not downloaded or loaded during repository verification. The process integration test and official runtime checks prove the serving/runtime contract, not target-model quality, memory fit, or throughput on this host.",
+    "The 16.48 GiB GCP object was checked for live reachability and exact byte length but was not downloaded during verification; the helper enforces its approved SHA-256 after a complete or resumed download.",
+    "The standalone process smoke used offline library flags on the host. Hard egress blocking was exercised by the real-model pytest socket guard; the included Docker smoke uses an internal-only network when a container runtime is available."
+  ]
+}

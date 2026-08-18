@@ -1,0 +1,29 @@
+services:
+  inference:
+    build:
+      context: .
+      target: runtime
+    image: llm-inference-service:local
+    env_file: .env
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - "${LOCAL_MODEL_PATH:?set LOCAL_MODEL_PATH}:/models/model:ro"
+      - model-cache:/var/cache/inference-models
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m,mode=1777
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 45s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  model-cache: {}

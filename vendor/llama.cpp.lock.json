@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/ggml-org/llama.cpp",
+  "tag": "b10355",
+  "commit": "dd1ea524333b1e697489067d7a4c39c60d32beee",
+  "verifiedOn": "2026-08-10",
+  "license": "MIT",
+  "assets": {
+    "win32-x64": {
+      "name": "llama-b10355-bin-win-cpu-x64.zip",
+      "sha256": "5488e6232c6114d81302adc616d6c7470a8c06e24140e1baf1d0a85e3b731adc",
+      "sizeBytes": 18427275
+    },
+    "darwin-arm64": {
+      "name": "llama-b10355-bin-macos-arm64.tar.gz",
+      "sha256": "c9ea9bbe4253b3c3109108072df3bce8b30ded1e56280813645ba4b7d23423d8",
+      "sizeBytes": 11040935
+    },
+    "linux-x64": {
+      "name": "llama-b10355-bin-ubuntu-x64.tar.gz",
+      "sha256": "e180cabf4cd5d685fc5756315f99d6e254c0d54604814647f46bfebb242b66cb",
+      "sizeBytes": 16544604
+    },
+    "linux-arm64": {
+      "name": "llama-b10355-bin-ubuntu-arm64.tar.gz",
+      "sha256": "445af44c78cfb5f3ab8990f663bd44b1880f8ba8ff3ecc954e794566d4780c23",
+      "sizeBytes": 13415414
+    }
+  }
+}
